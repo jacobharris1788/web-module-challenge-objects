@@ -6,19 +6,20 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
-function createMenuItem(name, price, category){
-    let newMenuItem = {
-      name: name,
-      price: price,
-      category: category}
-    return newMenuItem;
+function createMenuItem(nameVar, priceVar, categoryVar){
+    return {
+      name: nameVar,
+      price: priceVar,
+      category: categoryVar}
 }
+
 
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
 
-createMenuItem("Fish Tacos", 14, "Lunch");
-createMenuItem("Turkey Sandwich", 8, "Lunch");
-createMenuItem("Eggs Benedict", 16, "Breakfast");
+const newMenu = [];
+newMenu.push(createMenuItem("Fish Tacos", 14, "Lunch"));
+newMenu.push(createMenuItem("Turkey Sandwich", 8, "Lunch"));
+newMenu.push(createMenuItem("Eggs Benedict", 16, "Breakfast"));
 
 
 /* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates
@@ -138,9 +139,21 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-  function getLongReviews(/* code here */) {
-    /* code here */
+
+function countWords(str) {
+  let words = str.split(" ").length;
+  return words;
+}
+
+function getLongReviews(array) {
+  newArray = [];
+  for (i = 0; i < array.length; i++) {
+    if (countWords(array[i].feedback) > 15) {
+      newArray.push(array[i]);
+    }
   }
+  return newArray;
+}
   
 
 /* STRETCH 3:  This challenge is not related to the data above! 
@@ -161,7 +174,18 @@ The returned object should have the following characteristics:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odom) {
+  const myObj = {
+    odometer: odom,
+    drive: function(dist) {
+      return this.odometer += dist;
+    }
+  }
+  return myObj;
 }
+
+
+const myCars = [];
+
+//add cars to array myCars
+myCars.push(carMaker(50).drive(100));
